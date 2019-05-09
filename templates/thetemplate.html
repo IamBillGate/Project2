@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link data-require="bootstrap@*" data-semver="4.1.3" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script data-require="bootstrap@*" data-semver="4.1.3" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+	<form method = "POST">
+	{% if correct == 1 %}
+	<b> {{useranswer}} is correct, +1 locoin,</b> <meta http-equiv="Refresh" content= {{r}} />
+	{% elif correct == 2 %}
+	<b> {{useranswer}} is not correct </b> <meta http-equiv="Refresh" content= {{r}} >
+	{% else %}
+	{{n1}} {{o}} {{n2}} = <input type = 'text' name = 'useranswer' />
+	<input type = "hidden" name = "calcanswer" value = {{calcanswer}} />
+	<input type = "hidden" name = "n1" value = {{n1}} />
+	<input type = "hidden" name = "n2" value = {{n2}} />
+	<input type = "hidden" name = "o" value = {{o}} />
+	<input type = 'submit'/>
+	{% endif %}
+    
+	</form>
+  </body>
+
+</html>
