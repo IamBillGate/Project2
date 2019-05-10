@@ -4,6 +4,7 @@ app = Flask(__name__)
 @app.route('/')
 def main():
 	return render_template("home.html")
+	
 @app.route('/add',methods=["GET","POST"])
 def add():
 	correct = 0
