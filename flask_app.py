@@ -132,23 +132,24 @@ def addfractions():
     correct = 0
     if request.method=='GET':
         a = random.randint(1,10)
-        b = random.randint(1,10)
+        b = random.randint(2,6)
         c = random.randint(1,10)
-        d = random.randint(1,10)
+        d = random.randint(2,6)
         calcanswer = (a/b)+(c/d)
         useranswer=0
-        return render_template('exponents.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+        return render_template('addtwofractions.html',a=a,b=b,c=c,d=d,calcanswer=calcanswer,useranswer1=useranswer,useranswer2=useranswer,correct=correct)
     else:
         a = request.form['a']
         b = request.form['b']
         c = request.form['c']
         d = request.form['d']
         calcanswer = (int(a)/int(b))+(int(c)/int(d))
-        useranswer1 = request.form['useranswer1']
-        useranswer2 = request.form['useranswer2']
+        useranswer1 = int(request.form['useranswer1'])
+        useranswer2 = int(request.form['useranswer2'])
         useranswerfull = useranswer1/useranswer2
-        if useranswerfull == request.form['calcanswer'].strip():
+        if useranswerfull == calcanswer:
             correct=1
         else:
             correct=-1
-        return render_template('exponents.html',a=a,b=b,calcanswer=calcanswer,useranswerfull=useranswer,correct=correct)
+            print(calcanswer)
+        return render_template('addtwofractions.html',a=a,b=b,c=c,d=d,calcanswer=calcanswer,useranswer1=useranswer1,useranswer2=useranswer2,correct=correct)
