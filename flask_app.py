@@ -1,11 +1,17 @@
 from flask import Flask, render_template, request
 from random import randint
 import random
+import math
 app = Flask(__name__)
 @app.route('/')
 def main():
 	return render_template("home.html")
 #LOGANG CODE
+
+
+
+
+
 @app.route('/add',methods=["GET","POST"])
 def add():
 	correct = 0
@@ -156,25 +162,26 @@ def exponents():
             correct=-1
         return render_template('exponents.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
 		
-@app.route('/pythagorean/<num1>/<num2>/<a2>/<b2>/<c>/<x>/<useranswer>/')
-def pythagorean(num1,num2,a2,b2,x,c,useranswer):
-    num1=random.randint(1,10)
-    num2=random.randint(1,10)
-    a2=((num1)**2)
-    b2=((num2)**2)
-    total = (a2+b2)
-    x=math.sqrt(total)
-    c=round(x,2)
-    print('A= ',num1,'B= ',num2,c)
-    while True:
-        useranswer=input('What is C? ')
-        if float(useranswer)==float(c):
-            print('That is the correct answer')
-            break;
+@app.route('/pythago',methods=['GET','POST'])
+def pythago():
+    correct = 0
+    img = random.randint(1,5)
+    if request.method=='GET':
+        a = random.randint(1,15)
+        b = random.randint(1,15)
+        calcanswer = round(math.sqrt((a*a)+(b*b)),2)
+        useranswer=0
+        return render_template('pythag.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct,img=img)
+    else:
+        a = request.form['a']
+        b = request.form['b']
+        calcanswer = round(math.sqrt((int(a)* int(a))+(int(b)*int(b))),2)
+        useranswer = request.form['useranswer']
+        if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
+            correct=1
         else:
-            print('That is not the correct answer, try again.')
-    return render_template(useranswer,num1,num2,total,c)
-
+            correct=-1
+        return render_template('pythag.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct,img=img)
 @app.route('/addfractions', methods=['GET','POST'])
 def addfractions():
     correct = 0
