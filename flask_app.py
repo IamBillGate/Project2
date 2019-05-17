@@ -201,3 +201,38 @@ def addfractions():
             correct=-1
             print(calcanswer)
         return render_template('addtwofractions.html',a=a,b=b,c=c,d=d,calcanswer=calcanswer,useranswer1=useranswer1,useranswer2=useranswer2,correct=correct)
+
+@app.route('/syseq',methods=['GET','POST'])
+def syseq():
+	correct = 0
+	if request.method == 'GET':
+		# ax + b = y, cx + d = y
+		a = random.randint(-10,10)
+		b = random.randint(-10,10)
+		c = random.randint(-10,10)
+		d = random.randint(-10,10)
+		return render_template('syseq.html',a=a,b=b,c=c,d=d,correct=correct)
+	else:
+		a = int(request.form['a'])
+		b = int(request.form['b'])
+		c = int(request.form['c'])
+		d = int(request.form['d'])
+		x = request.form['x']
+		y = request.form['y']
+		if len(x.split('/')) == 2:
+			x = float(x.split('/')[0]) / float(x.split('/')[1])
+			#print('x',x)
+		if len(y.split('/')) == 2:
+			y = float(y.split('/')[0]) / float(y.split('/')[1])
+			#print('y',y)
+		x = float(x)
+		y = float(y)
+		rx = (d-b)/(a-c)
+		ry = a*rx + b
+		print(x,y)
+		print(rx,ry)
+		if rx == x and ry == y:
+			correct = 1
+		else:
+			correct = 2
+		return render_template('syseq.html',a=a,b=b,c=c,d=d,correct=correct)
