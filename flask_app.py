@@ -18,7 +18,7 @@ def add():
 	r = "1; /add"
 	if request.method == "GET":
 		o = "+"
-		n1,n2 = randint(-100,100),randint(-100,100)
+		n1,n2 = randint(-50,50),randint(-50,50)
 		calcanswer = n1 + n2
 		print([o,n1,n2,calcanswer])
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,calcanswer=calcanswer,correct=correct,r=r)
@@ -39,7 +39,7 @@ def subtract():
 	r = "1; /subtract"
 	if request.method == "GET":
 		o = "-"
-		n1,n2 = randint(-20,20),randint(-20,20)
+		n1,n2 = randint(-50,50),randint(-50,50)
 		calcanswer = n1 - n2
 		print([o,n1,n2,calcanswer])
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,calcanswer=calcanswer,correct=correct,r=r)
@@ -99,7 +99,7 @@ def divide():
 		calcanswer = float(calcanswer)
 		try: calcanswer = int(calcanswer)
 		except: pass
-		calcanswer = round(calcanswer, 2) 
+		calcanswer = round(calcanswer, 2)
 		useranswer = round(useranswer, 2)
 		if calcanswer == useranswer: correct = 1
 		else: correct = 2
@@ -111,7 +111,7 @@ def exponent():
 	r = "1; /exponent"
 	if request.method == "GET":
 		o = "^"
-		n1,n2 = randint(-100,100),randint(-100,100)
+		n1,n2 = randint(-10,10),randint(-2,3)
 		calcanswer = n1 ** n2
 		print([o,n1,n2,calcanswer])
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,calcanswer=calcanswer,correct=correct,r=r)
