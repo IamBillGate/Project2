@@ -1,14 +1,88 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from random import randint
 import random
 import math
+import sqlite3
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 @app.route('/')
 def main():
-	return render_template("home.html")
+	a = False
+	try: 
+		print(session['email'])
+		a = True
+	except: pass
+	if a == True:
+		return render_template("home.html",e=session['email'])
+	else: 
+		e = "not logged in" 
+		return render_template("home.html",e=e)
 #LOGANG CODE
 
+@app.route('/logout')
+def logout():
+    session.pop('email', None)
+    session.pop('ID', None)
+    session.pop('username', None)
+    session.pop('role', None)
+    return render_template('logout.html')
 
+@app.route('/signup',methods=['GET','POST'])
+def signup():
+    if request.method=='GET':
+        return render_template('signup.html',display='',session=session)
+    else:
+        e = request.form['email']
+        p = request.form['password']
+        confirm = request.form['confirm']
+        conn = sqlite3.connect("./static/Main.db")
+        c = conn.cursor()
+        sql = "SELECT email FROM user"
+        c.execute(sql)
+        for row in c.fetchall():
+            if row[0] == e: return render_template('signup.html',display='Email allready registered',session=session)
+
+        if p!=confirm: return render_template('signup.html',email=e,display='Passwords do not match',session=session)
+        
+        sql = 'INSERT INTO User (email, password) values(\'{}\',\'{}\')'.format(e,p)
+        c.execute(sql)
+        conn.commit()
+        sql = "SELECT seq FROM sqlite_sequence WHERE name = 'user'"
+        c.execute(sql)
+        session['email'] = e
+        session['ID'] = c.fetchall()[0][0]
+        c.close()
+        conn.close()
+        return render_template('signup.html',display=("Succefully logged in as: " + e),session=session)
+		
+@app.route('/login',methods=['GET','POST'])
+def login():
+  if request.method=='GET':
+    return render_template('login.html',display='',session=session)
+  else:
+    conn = sqlite3.connect("./static/Main.db")
+    c = conn.cursor()
+    sql = "SELECT email, password, id FROM user"
+    c.execute(sql)
+    msg = "Invalid Credentials"
+    e = request.form['email']
+    p = request.form['password']
+    for row in c.fetchall():
+      if row[0]==e and row[1]==p:
+        msg = "Successfully logged in as: " + e 
+        session['email'] = e
+        session['ID'] = row[2]
+    c.close()
+    conn.close()
+    return render_template('login.html',display=msg,session=session)
+
+@app.route('/checklogin')
+def checklogin():
+  if 'email' in session:
+    email = session['email']
+    return 'Logged in as ' + email + '<br>' + \
+    "<b><a href = '/logout'>click here to log out</a></b>"
+  return "You are not logged in <br><a href = '/login'></b>log in</b></a>"
 
 
 

@@ -20,8 +20,14 @@
 	<a href="/addfractions">(fractions)</a>
 	<a href="/exponents">(e2)</a>
 	<a href="/pythago">(pythag)</a>
-	<a href="/syseq">(syseq)</a>
-
+	<a href="/syseq">(syseq)</a><br/>
+	email: {{e}}
+	{% if e == "not logged in" %}
+	<a href="/login">(login)</a>
+	<a href="/signup">(signup)</a>
+	{% else %}
+	<a href="/logout">(logout)</a>
+	{% endif %}
   </body>
 
 </html>
