@@ -53,7 +53,7 @@ def signup():
         session['ID'] = c.fetchall()[0][0]
         c.close()
         conn.close()
-        return render_template('signup.html',display=("Succefully logged in as: " + e),session=session)
+        return render_template('signup.html',display=("Successfully logged in as: " + e),session=session)
 		
 @app.route('/login',methods=['GET','POST'])
 def login():
@@ -94,7 +94,7 @@ def add():
 		o = "+"
 		n1,n2 = randint(-50,50),randint(-50,50)
 		calcanswer = n1 + n2
-		print([o,n1,n2,calcanswer])
+		
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,calcanswer=calcanswer,correct=correct,r=r)
 	else: 
 		calcanswer = request.form['calcanswer']
@@ -102,7 +102,7 @@ def add():
 		n1 = request.form['n1']
 		n2 = request.form['n2']
 		o = request.form['o']
-		print([calcanswer,useranswer,n1,n2,o])
+		
 		if calcanswer == useranswer: correct = 1
 		else: correct = 2
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)
@@ -115,7 +115,7 @@ def subtract():
 		o = "-"
 		n1,n2 = randint(-50,50),randint(-50,50)
 		calcanswer = n1 - n2
-		print([o,n1,n2,calcanswer])
+		
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,calcanswer=calcanswer,correct=correct,r=r)
 	else: 
 		calcanswer = request.form['calcanswer']
@@ -123,7 +123,7 @@ def subtract():
 		n1 = request.form['n1']
 		n2 = request.form['n2']
 		o = request.form['o']
-		print([calcanswer,useranswer,n1,n2,o])
+	
 		if calcanswer == useranswer: correct = 1
 		else: correct = 2
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)
@@ -137,7 +137,7 @@ def multiply():
 		o = "x"
 		n1,n2 = randint(-12,12),randint(-12,12)
 		calcanswer = n1 * n2
-		print([o,n1,n2,calcanswer])
+
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,calcanswer=calcanswer,correct=correct,r=r)
 	else: 
 		calcanswer = request.form['calcanswer']
@@ -145,7 +145,7 @@ def multiply():
 		n1 = request.form['n1']
 		n2 = request.form['n2']
 		o = request.form['o']
-		print([calcanswer,useranswer,n1,n2,o])
+	
 		if calcanswer == useranswer: correct = 1
 		else: correct = 2
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)
@@ -187,7 +187,7 @@ def exponent():
 		o = "^"
 		n1,n2 = randint(-10,10),randint(-2,3)
 		calcanswer = n1 ** n2
-		print([o,n1,n2,calcanswer])
+	
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,calcanswer=calcanswer,correct=correct,r=r)
 	else: 
 		calcanswer = request.form['calcanswer']
@@ -195,7 +195,7 @@ def exponent():
 		n1 = request.form['n1']
 		n2 = request.form['n2']
 		o = request.form['o']
-		print([calcanswer,useranswer,n1,n2,o])
+		
 		if calcanswer == useranswer: correct = 1
 		else: correct = 2
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)	
@@ -288,7 +288,7 @@ def addfractions():
             correct=1
         else:
             correct=-1
-            print(calcanswer)
+            
         return render_template('addtwofractions.html',a=a,b=b,c=c,d=d,calcanswer=calcanswer,useranswer1=useranswer1,useranswer2=useranswer2,correct=correct)
 
 @app.route('/syseq',methods=['GET','POST'])
@@ -310,16 +310,15 @@ def syseq():
 		y = request.form['y']
 		if len(x.split('/')) == 2:
 			x = float(x.split('/')[0]) / float(x.split('/')[1])
-			#print('x',x)
+			
 		if len(y.split('/')) == 2:
 			y = float(y.split('/')[0]) / float(y.split('/')[1])
-			#print('y',y)
+	
 		x = float(x)
 		y = float(y)
 		rx = (d-b)/(a-c)
 		ry = a*rx + b
-		print(x,y)
-		print(rx,ry)
+	
 		if rx == x and ry == y:
 			correct = 1
 		else:
