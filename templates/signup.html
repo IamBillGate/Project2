@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+	
+	<link data-require="bootstrap@4.1.3" data-semver="4.1.3" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+
+    <script data-require="bootstrap@4.1.3" data-semver="4.1.3" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="script.js"></script>  
+  </head>
+  
+  <body>
+    
+    {% if '@' in session['email'] %}<meta http-equiv='Refresh' content = '0; /'>{% endif %}
+	
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">CartMart</a>
+    
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        
+		<li class="nav-item ">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+		
+		<li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+		
+		{% if '@' in session['email'] %}
+		<li class="nav-item ">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+		{% else %}
+		<li class="nav-item active">
+          <a class="nav-link" href="/signup">Sign Up</a>
+        </li>
+		{% endif %}
+		
+
+      </ul>
+      
+	  </div>
+    </nav>
+
+	<div class="container-fluid">
+      
+	  <div class="row">
+      
+	  <div class="col-sm-4 bg-secondary"></div>
+	  
+	  <div class="col-sm-4">
+	  &nbsp;
+	  <form  action="" method="post" role="form">
+      
+	  <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id=email name='email' aria-describedby="emailHelp" placeholder="Enter email" value={{email}}>
+      </div>
+	  
+	  <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" id=password name='password' placeholder="Password">
+      </div>
+	  
+	  <div class="form-group">
+        <input type="password" class="form-control" id=confirm name='confirm' placeholder="Confirm">
+        <small class="form-text text-muted">{{display}}</small>
+      </div>
+
+      <button type="submit" class="btn">Submit</button>
+      
+	  </form>
+	  &nbsp;
+	  </div>
+	  
+	  <div class="col-sm-4 bg-secondary"></div>
+      
+	  </div>
+    
+	</div>
+
+  </body>
+
+</html>
