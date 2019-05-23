@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>   
+  </head>
+  <body>
+    <h1>Practice Complementary Problems</h1>
+<p>Given angle {{x}}, what is the missing angle?</p>
+    <form action = "" method = "post">
+<input type=hidden name='Correct' value = {{correct}} />
+      <p><input type=text name='UserAnswer' value = {{UserAnswer}}/></p>
+      <p><input type=submit value = 'Answer' /></p>
+ name='useranswer' value='{{useranswer}}' size='2' /></h3>
+        <input type='submit' value='Answer' />
+        </form>
+</div>
+
+<div  align='center' class='solution'>
+   {% if correct==1 %}
+   <h3>Congratulations!  {{UserAnswer}} is correct! </h3>
+   {% endif %}
+   {% if correct==-1 %}
+   <h3>Sorry,  {{UserAnswer}} is the correct answer </h3>
+   {% endif %}
+</div>
+
+<div align='center' class='footer'>
+   <hr/>
+   <p> | Created by:  Stuart  | <a href='/'>Home</a>  | <a href='/addtwo'>More Practice</a> |</p>
+</div>
+  </body>
+</html>
+    </form>
+  </body>
+</html>
