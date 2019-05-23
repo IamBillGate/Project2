@@ -28,25 +28,28 @@ def logout():
     return render_template('logout.html')
 @app.route('/exponentssub', methods=['GET','POST'])
 def exponentssub():
-    correct = 0
-    a=0
-    b=0
-    c=0
-    if request.method=='GET':
-        a = random.randint(1,12)
-        b = random.randint(1,20)
-        c = random.randint(1,3)
-        calcanswer = a**c - b
-        useranswer = 0
-        return render_template('exponentssub.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
-    else:
-        calcanswer = int(request.form['calcanswer'])
-        useranswer = int(request.form['useranswer'])
-        if calcanswer == useranswer:
-            correct=1
-        else:
-            correct=-1
-        return render_template('exponentssub.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+	correct = 0
+	a=0
+	b=0
+	c=0
+	if request.method=='GET':
+		a = random.randint(1,12)
+		b = random.randint(1,20)
+		c = random.randint(1,3)
+		calcanswer = a**c - b
+		useranswer = 0
+		return render_template('exponentssub.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+	else:
+		calcanswer = int(request.form['calcanswer'])
+		useranswer = int(request.form['useranswer'])
+		a = request.form['a']
+		b = request.form['b']
+		c = request.form['c']
+		if calcanswer == useranswer:
+			correct=1
+		else:
+			correct=-1
+		return render_template('exponentssub.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
 @app.route('/exponentsadd', methods=['GET','POST'])
 def exponentsadd():
 	correct = 0
@@ -371,39 +374,37 @@ def syseq():
 
 @app.route('/supplementary', methods=['GET','POST'])
 def supplementary():
-    if request.method=='GET':
-        UserAnswer = 0
-        x = random.randint(1,180)
-        n = 180
-        print(x)
-        correct = int(n)-int(x)
-        return render_template('supplementary.html',x=x,n=n,correct=correct,UserAnswer=UserAnswer)
-     else:
-        x = request.form['x']
-        n = request.form['n']	
-        useranswer = request.form['useranswer']
-        if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
-            correct=1
-        else:
-            correct=-1
-        return render_template('addtwo.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+	if request.method=='GET':
+		UserAnswer = 0
+		x = random.randint(1,180)
+		n = 180
+		correct = int(n)-int(x)
+		return render_template('supplementary.html',x=x,n=n,correct=correct,UserAnswer=UserAnswer)
+	else:
+		x = request.form['x']
+		n = request.form['n']	
+		useranswer = request.form['useranswer']
+		if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
+			correct=1
+		else:
+			correct=-1
+		return render_template('addtwo.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
 
 
 @app.route('/complementary', methods=['GET','POST'])
 def complementary():
-    if request.method=='GET':
-        UserAnswer = 0
-        x = random.randint(1,90)
-        n = 90
-        print(x)
-        correct = int(n)-int(x)
-        return render_template('complementary.html',x=x,n=n,correct=correct,UserAnswer=UserAnswer)
-     else:
-        x = request.form['x']
-        n = request.form['n']	
-        useranswer = request.form['useranswer']
-        if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
-            correct=1
-        else:
-            correct=-1
-        return render_template('addtwo.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+	if request.method=='GET':
+		UserAnswer = 0
+		x = random.randint(1,90)
+		n = 90
+		correct = int(n)-int(x)
+		return render_template('complementary.html',x=x,n=n,correct=correct,UserAnswer=UserAnswer)
+	else:
+		x = request.form['x']
+		n = request.form['n']	
+		useranswer = request.form['useranswer']
+		if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
+			correct=1
+		else:
+			correct=-1
+		return render_template('addtwo.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
