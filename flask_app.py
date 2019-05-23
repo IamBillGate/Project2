@@ -5,6 +5,7 @@ import math
 import sqlite3
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
 @app.route('/')
 def main():
 	a = False
