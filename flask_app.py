@@ -368,3 +368,42 @@ def syseq():
 		else:
 			correct = 2
 		return render_template('syseq.html',a=a,b=b,c=c,d=d,correct=correct)
+
+@app.route('/supplementary', methods=['GET','POST'])
+def supplementary():
+    if request.method=='GET':
+        UserAnswer = 0
+        x = random.randint(1,180)
+        n = 180
+        print(x)
+        correct = int(n)-int(x)
+        return render_template('supplementary.html',x=x,n=n,correct=correct,UserAnswer=UserAnswer)
+     else:
+        x = request.form['x']
+        n = request.form['n']	
+        useranswer = request.form['useranswer']
+        if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
+            correct=1
+        else:
+            correct=-1
+        return render_template('addtwo.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+
+
+@app.route('/complementary', methods=['GET','POST'])
+def complementary():
+    if request.method=='GET':
+        UserAnswer = 0
+        x = random.randint(1,90)
+        n = 90
+        print(x)
+        correct = int(n)-int(x)
+        return render_template('complementary.html',x=x,n=n,correct=correct,UserAnswer=UserAnswer)
+     else:
+        x = request.form['x']
+        n = request.form['n']	
+        useranswer = request.form['useranswer']
+        if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
+            correct=1
+        else:
+            correct=-1
+        return render_template('addtwo.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
