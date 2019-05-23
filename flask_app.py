@@ -26,7 +26,51 @@ def logout():
     session.pop('username', None)
     session.pop('role', None)
     return render_template('logout.html')
-
+@app.route('/exponentssub', methods=['GET','POST'])
+def exponentssub():
+    correct = 0
+    a=0
+    b=0
+    c=0
+    if request.method=='GET':
+        a = random.randint(1,12)
+        b = random.randint(1,20)
+        c = random.randint(1,3)
+        calcanswer = a**c - b
+        useranswer = 0
+        return render_template('exponentssub.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+    else:
+        calcanswer = int(request.form['calcanswer'])
+        useranswer = int(request.form['useranswer'])
+        if calcanswer == useranswer:
+            correct=1
+        else:
+            correct=-1
+        return render_template('exponentssub.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+@app.route('/exponentsadd', methods=['GET','POST'])
+def exponentsadd():
+	correct = 0
+	a=0
+	b=0
+	c=0
+	if request.method=='GET':
+		a = random.randint(1,12)
+		b = random.randint(1,20)
+		c = random.randint(1,3)
+		calcanswer = a**c + b
+		useranswer = 0
+		return render_template('exponentsadd.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+	else:
+		calcanswer = int(request.form['calcanswer'])
+		useranswer = int(request.form['useranswer'])
+		a = request.form['a']
+		b = request.form['b']
+		c = request.form['c']
+		if calcanswer == useranswer:
+			correct=1
+		else:
+			correct=-1
+		return render_template('exponentsadd.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
 @app.route('/signup',methods=['GET','POST'])
 def signup():
     if request.method=='GET':

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1 align='center'>Exponent & Subtraction Practice!</h1>
+    <br/>
+    <div align='center' class='background'>
+        <div class='row row-centered'>
+            <div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'></div>
+            <div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>
+                <b>BACKGROUND:</b> Find the value of the powered number, then subtract the other one from it. Using a calculator is advised. Reload page after solving problem.
+            </div>
+            <div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'></div>
+        </div>
+    </div>
+    <br/>
+	<div  align='center' class='problem'>
+        <div class='row row-centered'>
+            <div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'></div>
+            <div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>
+                <img src='http://images.tutorvista.com/cms/images/113/exponents1.png' class='img-responsive' style='width:30%'  />
+            </div>
+            <div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'></div>
+        </div>
+	    <hr/>
+	    <h3>{{ equation }} </h3>
+	    <form method='post'>
+	    <input type='hidden' name='calcanswer' value={{calcanswer}} />
+        <h3>Solve the equation: &nbsp;&nbsp; {{a}} ^ {{c}} - {{b}} = <input type='text' name='useranswer' value='{{useranswer}}' size='2' /></h3>
+        <input type='submit' value='Answer' />
+        </form>
+	</div>
+
+	<div  align='center' class='solution'>
+	    {% if correct==1 %}
+	    <h3>Congratulations!  {{calcanswer}} is correct! </h3>
+	    {% endif %}
+	    {% if correct==-1 %}
+	    <h3>Sorry,  {{calcanswer}} is the correct answer </h3>
+	    {% endif %}
+	</div>
+
+	<div align='center' class='footer'>
+	    <hr/>
+	    <p> | Created by:  Diego Acevedo  | <a href='/'>Home</a>  | <a href='/addtwo'>More Practice</a> |</p>
+	</div>
+  </body>
+</html>
