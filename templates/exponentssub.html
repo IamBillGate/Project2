@@ -31,6 +31,9 @@
 	    <form method='post'>
 	    <input type='hidden' name='calcanswer' value={{calcanswer}} />
         <h3>Solve the equation: &nbsp;&nbsp; {{a}} ^ {{c}} - {{b}} = <input type='text' name='useranswer' value='{{useranswer}}' size='2' /></h3>
+		<input type='hidden' value= {{a}} name="a"/>
+		<input type='hidden' value= {{b}} name="b"/>
+		<input type='hidden' value= {{c}} name="c"/>
         <input type='submit' value='Answer' />
         </form>
 	</div>
@@ -46,7 +49,7 @@
 
 	<div align='center' class='footer'>
 	    <hr/>
-	    <p> | Created by:  Diego Acevedo  | <a href='/'>Home</a>  | <a href='/addtwo'>More Practice</a> |</p>
+	    <p> | Created by:  Diego Acevedo  | <a href='/'>Home</a>  | <a href='/exponentssub'>More Practice</a> |</p>
 	</div>
   </body>
 </html>
