@@ -173,26 +173,27 @@ def subtract():
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)
 
 		
-@app.route('/multiply', methods=["GET","POST"])
+@app.route('/multiply', methods=['GET','POST'])
 def multiply():
-	correct = 0
-	r = "1; /multiply"
-	if request.method == "GET":
-		o = "x"
-		n1,n2 = randint(-12,12),randint(-12,12)
-		calcanswer = n1 * n2
-
-		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,calcanswer=calcanswer,correct=correct,r=r)
-	else: 
-		calcanswer = request.form['calcanswer']
-		useranswer = request.form['useranswer']
-		n1 = request.form['n1']
-		n2 = request.form['n2']
-		o = request.form['o']
-	
-		if calcanswer == useranswer: correct = 1
-		else: correct = 2
-		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)
+    correct = 0
+    if request.method=='GET':
+        a = random.randint(-50,50)
+        b = random.randint(-50,50)
+        c = random.randint(-50,50)
+        calcanswer = a*b*c
+        useranswer=0
+        return render_template('multiply.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+    else:
+        a = request.form['a']
+        b = request.form['b']
+        c = request.form['c']
+        calcanswer = int(a)*int(b)*int(c)
+        useranswer = request.form['useranswer']
+        if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
+            correct=1
+        else:
+            correct=-1
+        return render_template('multiply.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
 		
 @app.route('/divide', methods=["GET","POST"])
 def divide():
