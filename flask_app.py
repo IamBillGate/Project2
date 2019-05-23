@@ -26,6 +26,29 @@ def logout():
     session.pop('username', None)
     session.pop('role', None)
     return render_template('logout.html')
+	
+@app.route("/linearequation", methods=["GET","POST"]) # I don't know what to name the route. You can change it to whatever you want.
+def linearequation():
+    correct = 0
+    if request.method == "GET":
+        m = random.randint(-10,10)                 # The range is -10, 10 to keep these types of problems simple.
+        x = random.randint(-10,10)
+        b = random.randint(-10,10)
+        calcanswer = m * x + b
+        useranswer = 0
+        return render_template("mathproblem.html", correct=correct, m=m, x=x, b=b, calcanswer=calcanswer, useranswer=useranswer)
+    else:
+        m = request.form["m"]
+        x = request.form["x"]
+        b = request.form["b"]
+        calcanswer = int(m) * int(x) + int(b)
+        useranswer = request.form["useranswer"]
+        if request.form["useranswer"].strip() == request.form["calcanswer"].strip():
+            correct=1
+        else:
+            correct=-1
+        return render_template("mathproblem.html",correct=correct, m=m, x=x, b=b, calcanswer=calcanswer, useranswer=useranswer)
+		
 @app.route('/exponentssub', methods=['GET','POST'])
 def exponentssub():
 	correct = 0
@@ -50,6 +73,7 @@ def exponentssub():
 		else:
 			correct=-1
 		return render_template('exponentssub.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+		
 @app.route('/exponentsadd', methods=['GET','POST'])
 def exponentsadd():
 	correct = 0
@@ -74,6 +98,7 @@ def exponentsadd():
 		else:
 			correct=-1
 		return render_template('exponentsadd.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+		
 @app.route('/signup',methods=['GET','POST'])
 def signup():
     if request.method=='GET':
@@ -311,6 +336,7 @@ def pythago():
         else:
             correct=-1
         return render_template('pythag.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct,img=img)
+		
 @app.route('/addfractions', methods=['GET','POST'])
 def addfractions():
     correct = 0
@@ -371,6 +397,7 @@ def syseq():
 		else:
 			correct = 2
 		return render_template('syseq.html',a=a,b=b,c=c,d=d,correct=correct)
+		
 @app.route('/special',methods=['GET','POST'])
 def spec():
     correct = 0
