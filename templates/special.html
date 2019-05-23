@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>   
+    <link data-require="bootstrap@4.1.3" data-semver="4.1.3" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script data-require="bootstrap@4.1.3" data-semver="4.1.3" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <h1 align='center'>Special Right Triangles</h1>
+    <br/>
+    <div align='center' class='background'>
+        <div class='row row-centered'>
+            </div>
+            <div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'></div>
+        </div>
+    </div>
+    <br/>
+	<div  align='center' class='problem'>
+        <div class='row row-centered'>
+            <div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'></div>
+            <div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>
+                <img src='/static/{{ x }}{{ img }}.png' class='img-responsive' width=250/>
+            </div>
+            <div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'></div>
+        </div>
+	    <hr/>
+	    <form method='post'>
+		<input type='hidden' name='x' value={{x}} />
+		<input type='hidden' name='img' value={{img}} />
+	    <input type='hidden' name='calcanswer' value={{calcanswer}} />
+        <input type=radio name = useranswer value = trip>Pythagorean Triple<br/>
+		<input type=radio name = useranswer value = thir>30-60-90 Triangle<br/>
+		<input type=radio name = useranswer value = four>45-45-90 Triangle<br/>
+        <input type='submit' value='Answer' />
+        </form>
+	</div>
+
+	<div  align='center' class='solution'>
+	    {% if correct==1 %}
+	    <h3>Congratulations!  You are correct! </h3>
+	    {% endif %}
+	    {% if correct==-1 %}
+	    <h3>Sorry,  you are not correct... </h3>
+	    {% endif %}
+	</div>
+
+	<div align='center' class='footer'>
+	    <hr/>
+	    <p> | Created by:  Aidan Phimmasehn  | <a href='/'>Home</a>  | <a href='/special'>More Practice</a> |</p>
+	</div>
+  </body>
+</html>

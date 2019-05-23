@@ -325,41 +325,36 @@ def syseq():
 			correct = 2
 		return render_template('syseq.html',a=a,b=b,c=c,d=d,correct=correct)
 
-@app.route('/supplementary', methods=['GET','POST'])
-def supplementary():
+@app.route('/special',methods=['GET','POST'])
+def spec():
+    correct = 0
+    prob = random.randint(1,3)
+    img = random.randint(1,2)
+    x = 0
+    calcanswer = 0
+    useranswer = 0
     if request.method=='GET':
-        UserAnswer = 0
-        x = random.randint(1,180)
-        n = 180
-        print(x)
-        correct = int(n)-int(x)
-        return render_template('supplementary.html',x=x,n=n,correct=correct,UserAnswer=UserAnswer)
-     else:
+        if prob == 1:
+            x = 'trip'
+            calcanswer = 'trip'
+            useranswer = 0
+            return render_template('special.html',img=img,x=x,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+        elif prob == 2:
+            x = 'thir'
+            calcanswer = 'thir'
+            useranswer = 0
+            return render_template('special.html',img=img,x=x,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+        elif prob == 3:
+            x = 'four'
+            calcanswer = 'four'
+            useranswer = 0
+            return render_template('special.html',img=img,x=x,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+    else:
+        img = request.form['img']
         x = request.form['x']
-        n = request.form['n']	
         useranswer = request.form['useranswer']
         if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
             correct=1
         else:
             correct=-1
-        return render_template('addtwo.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
-
-
-@app.route('/complementary', methods=['GET','POST'])
-def complementary():
-    if request.method=='GET':
-        UserAnswer = 0
-        x = random.randint(1,90)
-        n = 90
-        print(x)
-        correct = int(n)-int(x)
-        return render_template('complementary.html',x=x,n=n,correct=correct,UserAnswer=UserAnswer)
-     else:
-        x = request.form['x']
-        n = request.form['n']	
-        useranswer = request.form['useranswer']
-        if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
-            correct=1
-        else:
-            correct=-1
-        return render_template('addtwo.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+        return render_template('special.html',calcanswer=calcanswer,useranswer=useranswer,correct=correct,img=img,x=x)
