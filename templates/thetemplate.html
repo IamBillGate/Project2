@@ -9,24 +9,89 @@
   </head>
 
   <body>
+	       <nav class="navbar mb-2 sticky-top navbar-expand-lg navbar-dark" style="background-color: #1b1464;"">
+              <a class="navbar-brand pull-left"><img src="/static/mpp-01.png" height='60' width='70'></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+		<li class="nav-item active">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+
+		<li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+
+		{% if '@' in session['email'] %}
+		<li class="nav-item ">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+		{% else %}
+		<li class="nav-item ">
+          <a class="nav-link" href="/signup">Sign Up</a>
+        </li>
+		{% endif %}
+
+
+      </ul>
+
+	  </div>
+    </nav>
+	<p>
+	
+	</p>
 	<form method = "POST">
-	{% if correct == 1 %}
-	<b> Correct! +1 locoin,</b> <meta http-equiv="Refresh" content= {{r}} />
-	{% elif correct == 2 %}
-	<b> Not correct! </b> <meta http-equiv="Refresh" content= {{r}} >
-	{% elif correct == 0 %}
-	{{n1}} {{o}} {{n2}} = <input type = 'text' name = 'useranswer' />
+	{% if correct == 1 %} 
+	<center>
+	<h1>{{n1}} {{o}} {{n2}} =<input type = 'text' name = 'useranswer' placeholder="{{useranswer}}" /readonly></h1>
+	</center>
+	<div class="alert alert-success" role="alert">
+  <center>
+  <h4 class="alert-heading">Well done!</h4>
+  <p> {{useranswer}} was the correct answer to the problem, you gain +1 cartercoin. Keep up the good work!</p>
+  <hr>
+  <p class="mb-0">You will be returned to the problem page automaticaly in 7 seconds.</p>
+  </center>
+</div> 
+<meta http-equiv="Refresh" content= {{r}} />
+	{% elif correct == 2 %} 
+	<center>
+	<h1>{{n1}} {{o}} {{n2}} =<input type = 'text' name = 'useranswer' placeholder="{{useranswer}}" /readonly></h1>
+	</center>
+		<div class="alert alert-danger" role="alert">
+  <center>
+  <h4 class="alert-heading"> Good Try!</h4>
+  <p> {{useranswer}} is the incorrect awnswer, the correct awnser was {{calcanswer}}. Keep on working to improve, we know you can do it!</p>
+  <hr>
+  <p class="mb-0">You will be returned to the problem page automaticaly in 7 seconds.</p>
+  </center>
+</div> 
+	<meta http-equiv="Refresh" content= {{r}} >
+	{% else %}
+	<center>
+	<h1>{{n1}} {{o}} {{n2}} =<input type = 'text' name = 'useranswer'/></h1>
 	<input type = "hidden" name = "calcanswer" value = {{calcanswer}} />
 	<input type = "hidden" name = "n1" value = {{n1}} />
 	<input type = "hidden" name = "n2" value = {{n2}} />
 	<input type = "hidden" name = "o" value = {{o}} /><br/>
-	<input type = 'submit'/><br/>
-	Round to the Nearest Tenth If Applicable
+	<input type = 'submit' class = 'btn btn-outline-success'/>
 	{% endif %}
-	
-    <br/><a href="/">(home)</a>
-	
 	</form>
+	</center>
+	<p>
+	
+	</p>
+	<center>
+	<a class="btn btn-secondary btn-sm" href="/" role="button">Return Home</a>
+	</center>
   </body>
 
 </html>
