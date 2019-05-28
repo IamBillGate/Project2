@@ -233,8 +233,27 @@ def subtract():
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)
 
 		
-@app.route('/multiply', methods=['GET','POST'])
-def multiply():
+@app.route('/multiply', methods=["GET","POST"])
+def multiply():	
+	correct = 0		
+	r = "1; /multiply"		
+	if request.method == "GET":		
+		o = "x"			
+		n1,n2 = randint(-12,12),randint(-12,12)			
+		calcanswer = n1 * n2			
+		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,calcanswer=calcanswer,correct=correct,r=r)			
+	else: 		
+		calcanswer = request.form['calcanswer']			
+		useranswer = request.form['useranswer']			
+		n1 = request.form['n1']			
+		n2 = request.form['n2']			
+		o = request.form['o']			
+		if calcanswer == useranswer: correct = 1			
+		else: correct = 2			
+		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)
+		
+@app.route('/multiplythree', methods=['GET','POST'])
+def multiplythree():
     correct = 0
     if request.method=='GET':
         a = random.randint(-50,50)
@@ -388,7 +407,7 @@ def addfractions():
         d = random.randint(2,6)
         calcanswer = (a/b)+(c/d)
         useranswer=0
-        return render_template('addtwofractions.html',a=a,b=b,c=c,d=d,calcanswer=calcanswer,useranswer1=useranswer,useranswer2=useranswer,correct=correct)
+        return render_template('fractions.html',a=a,b=b,c=c,d=d,calcanswer=calcanswer,useranswer1=useranswer,useranswer2=useranswer,correct=correct)
     else:
         a = request.form['a']
         b = request.form['b']
@@ -404,7 +423,7 @@ def addfractions():
         else:
             correct=-1
             
-        return render_template('addtwofractions.html',a=a,b=b,c=c,d=d,calcanswer=calcanswer,useranswer1=useranswer1,useranswer2=useranswer2,correct=correct)
+        return render_template('fractions',a=a,b=b,c=c,d=d,calcanswer=calcanswer,useranswer1=useranswer1,useranswer2=useranswer2,correct=correct)
 
 @app.route('/syseq',methods=['GET','POST'])
 def syseq():
