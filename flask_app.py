@@ -19,7 +19,12 @@ def main():
 		e = "not logged in" 
 		return render_template("home.html",e=e)
 #LOGANG CODE
-
+@app.route('/homepage')
+def hompage():
+	return render_template("homepage.html")
+@app.route('/about')
+def about():
+	return render_template("about.html")
 @app.route('/logout')
 def logout():
     session.pop('email', None)
@@ -314,28 +319,6 @@ def multiplytwo():
         else:
             correct=-1
         return render_template('multiplytwo.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
-
-
-
-@app.route('/exponents', methods=['GET','POST'])
-def exponents():
-    correct = 0
-    if request.method=='GET':
-        a = random.randint(1,10)
-        b = random.randint(1,5)
-        calcanswer = a**b
-        useranswer=0
-        return render_template('exponents.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
-    else:
-        a = request.form['a']
-        b = request.form['b']
-        calcanswer = int(a)**int(b)
-        useranswer = request.form['useranswer']
-        if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
-            correct=1
-        else:
-            correct=-1
-        return render_template('exponents.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
 		
 @app.route('/pythago',methods=['GET','POST'])
 def pythago():
