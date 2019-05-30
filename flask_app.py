@@ -34,7 +34,7 @@ def coinup(ID, V):
     c = conn.cursor()
     sql = 'SELECT coins FROM user WHERE id = ' + ID
     c.execute(sql)
-    print(ID)
+    
     coins = int(c.fetchall()[0][0]) + int(V)
     sql = 'UPDATE user SET coins = ' + str(coins) + ' WHERE id = ' + ID
     c.execute(sql)
