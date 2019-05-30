@@ -495,3 +495,41 @@ def spec():
         else:
             correct=-1
         return render_template('special.html',calcanswer=calcanswer,useranswer=useranswer,correct=correct,img=img,x=x)
+
+@app.route('/onevariable', methods=['GET','POST'])
+def onevariable():
+    correct = 0
+    if request.method=='GET':
+        a = random.randint(-10,10)
+        b = random.randint(-10,10)
+        pos = random.randint(1,3)
+        equation = ""
+        calcanswer = 0
+        if pos==1:
+            equation = "x + " + str(a) + " = " + str(b)
+            calcanswer = b - a
+        elif pos==2:
+            equation = str(a) + " + x = " + str(b)
+            calcanswer = b - a
+        else:
+            equation = str(a) + " + " + str(b) + " = x "
+            calcanswer = a + b
+        useranswer=0
+        return render_template('onevariable.html',a=a,b=b,equation=equation,calcanswer=calcanswer,useranswer=useranswer,correct=correct,pos=pos)
+    else:
+        a = request.form['a']
+        b = request.form['b']
+        pos = int(request.form['pos'])
+        calcanswer = request.form['calcanswer']
+        useranswer = request.form['useranswer']
+        if pos==1:
+            equation = "x + " + str(a) + " = " + str(b)
+        elif pos==2:
+            equation = str(a) + " + x = " + str(b)
+        else:
+            equation = str(a) + " + " + str(b) + " = x "
+        if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
+            correct=1
+        else:
+            correct=-1
+        return render_template('onevariable.html',a=a,b=b,equation=equation,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
