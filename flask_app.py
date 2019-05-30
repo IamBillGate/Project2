@@ -32,10 +32,11 @@ def coinup(ID, V):
     ID = str(ID)
     conn = sqlite3.connect("./static/Main.db")
     c = conn.cursor()
-    sql = 'SELECT coins FROM user WHERE ID = ' + ID
+    sql = 'SELECT coins FROM user WHERE id = ' + ID
     c.execute(sql)
+    print(ID)
     coins = int(c.fetchall()[0][0]) + int(V)
-    sql = 'UPDATE User SET coins = ' + str(coins) + ' WHERE ID = ' + ID
+    sql = 'UPDATE user SET coins = ' + str(coins) + ' WHERE id = ' + ID
     c.execute(sql)
     conn.commit()
     conn.close()
