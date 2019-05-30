@@ -512,6 +512,7 @@ def onevariable():
             equation = str(a) + " + " + str(b) + " = x "
         if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
             correct=1
+            coinup(session['ID'],2)
         else:
             correct=-1
         return render_template('onevariable.html',a=a,b=b,equation=equation,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
@@ -545,6 +546,7 @@ def algebra():
         calculatedanswer=request.form['calculatedanswer']
         if request.form['useranswer']==calculatedanswer:
             correct=1
+            coinup(session['ID'],2)
         else:
             correct=-1
         return render_template('algebra.html',problem=problem, calculatedanswer=calculatedanswer, useranswer=useranswer, correct=correct)
