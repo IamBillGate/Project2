@@ -515,3 +515,36 @@ def onevariable():
         else:
             correct=-1
         return render_template('onevariable.html',a=a,b=b,equation=equation,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
+
+@app.route('/algebra', methods=['GET','POST'])
+def algebra():
+    problem=""
+    correct=0
+    calculatedanswer=0
+    useranswer=0
+    if request.method=='GET':
+        c=0
+        a=random.randint(-20,20)
+        calculatedanswer=a
+        b=random.randint(-20,20)
+        version=random.randint(1,4)
+        if version==1:
+            c=a+b
+            problem='x+'+str(b)+'='+str(c)
+        elif version==2:
+            c=a-b
+            problem='x-'+str(b)+'='+str(c)
+        elif version==3:
+            c=a*b
+            problem='x*'+str(b)+'='+str(c)
+        else:
+            c=a/b
+            problem='x/'+str(b)+'='+str(c)
+        return render_template('algebra.html',problem=problem, calculatedanswer=calculatedanswer, useranswer=useranswer, correct=correct)
+    else:
+        calculatedanswer=request.form['calculatedanswer']
+        if request.form['useranswer']==calculatedanswer:
+            correct=1
+        else:
+            correct=-1
+        return render_template('algebra.html',problem=problem, calculatedanswer=calculatedanswer, useranswer=useranswer, correct=correct)

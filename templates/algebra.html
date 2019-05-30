@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link data-require="bootstrap@4.1.3" data-semver="4.1.3" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script data-require="bootstrap@4.1.3" data-semver="4.1.3" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    {{problem}}
+	<td>What is x equal to?</td>
+	<form method=post>
+	<input type=hidden name=calculatedanswer value={{calculatedanswer}} />
+	      <td><input type='text' name='useranswer' size=20 />
+		  <td><input type='submit' value='submit' /></td>
+	</form>
+	<div  align='center' class='solution'>
+	    {% if correct==1 %}
+	    <h3>Congratulations!  {{calculatedanswer}} is correct! </h3>
+	    {% endif %}
+	    {% if correct==-1 %}
+	    <h3>Sorry,  {{calculatedanswer}} is the correct answer </h3>
+	    {% endif %}
+		<a href='/algebra'>More Practice</a>
+	</div> 
+  </body>
+</html>
