@@ -32,7 +32,32 @@ def logout():
     session.pop('username', None)
     session.pop('role', None)
     return render_template('logout.html')
-	
+
+def coinup(ID, V):
+    ID = str(ID)
+    conn = sqlite3.connect("./static/Main.db")
+    c = conn.cursor()
+    sql = 'SELECT coins FROM user WHERE id = ' + ID
+    c.execute(sql)
+    
+    coins = int(c.fetchall()[0][0]) + int(V)
+    sql = 'UPDATE user SET coins = ' + str(coins) + ' WHERE id = ' + ID
+    c.execute(sql)
+    conn.commit()
+    conn.close()
+    return coins
+
+@app.route('/coins')
+def coins():
+    conn = sqlite3.connect("./static/Main.db")
+    c = conn.cursor()
+    sql = 'SELECT coins FROM user WHERE ID = ' + str(session['ID'])
+    c.execute(sql)
+    coins = c.fetchall()[0][0]
+    c.close()
+    conn.close()
+    return 'You currently have ' + str(coins) + ' COINS.'
+
 @app.route("/linearequation", methods=["GET","POST"]) # I don't know what to name the route. You can change it to whatever you want.
 def linearequation():
     correct = 0
@@ -51,6 +76,7 @@ def linearequation():
         useranswer = request.form["useranswer"]
         if request.form["useranswer"].strip() == request.form["calcanswer"].strip():
             correct=1
+            coinup(session['ID'],2)
         else:
             correct=-1
         return render_template("mathproblem.html",correct=correct, m=m, x=x, b=b, calcanswer=calcanswer, useranswer=useranswer)
@@ -76,6 +102,7 @@ def exponentssub():
 		c = request.form['c']
 		if calcanswer == useranswer:
 			correct=1
+			coinup(session['ID'],2)
 		else:
 			correct=-1
 		return render_template('exponentssub.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
@@ -101,6 +128,7 @@ def exponentsadd():
 		c = request.form['c']
 		if calcanswer == useranswer:
 			correct=1
+			coinup(session['ID'],2)
 		else:
 			correct=-1
 		return render_template('exponentsadd.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
@@ -181,7 +209,9 @@ def add():
 		n2 = request.form['n2']
 		o = request.form['o']
 		
-		if calcanswer == useranswer: correct = 1
+		if calcanswer == useranswer: 
+			correct = 1
+			coinup(session['ID'],2)
 		else: correct = 2
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)
 		
@@ -202,7 +232,9 @@ def subtract():
 		n2 = request.form['n2']
 		o = request.form['o']
 	
-		if calcanswer == useranswer: correct = 1
+		if calcanswer == useranswer: 
+			correct = 1
+			coinup(session['ID'],2)
 		else: correct = 2
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)
 
@@ -244,6 +276,7 @@ def multiplythree():
         useranswer = request.form['useranswer']
         if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
             correct=1
+            coinup(session['ID'],2)
         else:
             correct=-1
         return render_template('multiply.html',a=a,b=b,c=c,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
@@ -273,7 +306,9 @@ def divide():
 		except: pass
 		calcanswer = round(calcanswer, 2)
 		useranswer = round(useranswer, 2)
-		if calcanswer == useranswer: correct = 1
+		if calcanswer == useranswer: 
+			correct = 1
+			coinup(session['ID'],2)
 		else: correct = 2
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)
 
@@ -294,7 +329,9 @@ def exponent():
 		n2 = request.form['n2']
 		o = request.form['o']
 		
-		if calcanswer == useranswer: correct = 1
+		if calcanswer == useranswer: 
+			correct = 1
+			coinup(session['ID'],2)
 		else: correct = 2
 		return render_template("thetemplate.html",o=o,n1=n1,n2=n2,correct=correct,useranswer=useranswer,r=r)	
 		
@@ -316,10 +353,11 @@ def multiplytwo():
         useranswer = request.form['useranswer']
         if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
             correct=1
+            coinup(session['ID'],2)
         else:
             correct=-1
         return render_template('multiplytwo.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
-		
+
 @app.route('/pythago',methods=['GET','POST'])
 def pythago():
     correct = 0
@@ -337,6 +375,7 @@ def pythago():
         useranswer = request.form['useranswer']
         if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
             correct=1
+            coinup(session['ID'],2)
         else:
             correct=-1
         return render_template('pythag.html',a=a,b=b,calcanswer=calcanswer,useranswer=useranswer,correct=correct,img=img)
@@ -363,6 +402,7 @@ def addfractions():
         useranswerfull = useranswer1/useranswer2
         if useranswerfull == calcanswer:
             correct=1
+            coinup(session['ID'],2)
         else:
             correct=-1
             
@@ -398,6 +438,7 @@ def syseq():
 	
 		if rx == x and ry == y:
 			correct = 1
+			coinup(session['ID'],2)
 		else:
 			correct = 2
 		return render_template('syseq.html',a=a,b=b,c=c,d=d,correct=correct)
@@ -432,6 +473,45 @@ def spec():
         useranswer = request.form['useranswer']
         if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
             correct=1
+            coinup(session['ID'],2)
         else:
             correct=-1
         return render_template('special.html',calcanswer=calcanswer,useranswer=useranswer,correct=correct,img=img,x=x)
+
+@app.route('/onevariable', methods=['GET','POST'])
+def onevariable():
+    correct = 0
+    if request.method=='GET':
+        a = random.randint(-10,10)
+        b = random.randint(-10,10)
+        pos = random.randint(1,3)
+        equation = ""
+        calcanswer = 0
+        if pos==1:
+            equation = "x + " + str(a) + " = " + str(b)
+            calcanswer = b - a
+        elif pos==2:
+            equation = str(a) + " + x = " + str(b)
+            calcanswer = b - a
+        else:
+            equation = str(a) + " + " + str(b) + " = x "
+            calcanswer = a + b
+        useranswer=0
+        return render_template('onevariable.html',a=a,b=b,equation=equation,calcanswer=calcanswer,useranswer=useranswer,correct=correct,pos=pos)
+    else:
+        a = request.form['a']
+        b = request.form['b']
+        pos = int(request.form['pos'])
+        calcanswer = request.form['calcanswer']
+        useranswer = request.form['useranswer']
+        if pos==1:
+            equation = "x + " + str(a) + " = " + str(b)
+        elif pos==2:
+            equation = str(a) + " + x = " + str(b)
+        else:
+            equation = str(a) + " + " + str(b) + " = x "
+        if request.form['useranswer'].strip() == request.form['calcanswer'].strip():
+            correct=1
+        else:
+            correct=-1
+        return render_template('onevariable.html',a=a,b=b,equation=equation,calcanswer=calcanswer,useranswer=useranswer,correct=correct)
