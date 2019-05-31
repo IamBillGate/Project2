@@ -1,38 +1,316 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <link data-require="bootstrap@*" data-semver="4.1.3" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
-    <script data-require="bootstrap@*" data-semver="4.1.3" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     <link rel="icon" href="/static/faviconblue-01.png">
+     <title>Math Practice Problems</title>
   </head>
+    <style>
 
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: #29abe2;
+    border-color: #29abe2;
+}
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,1000');
+body {
+	margin: 0;
+	background: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	letter-spacing: 2px;
+}
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+header {
+  background: linear-gradient(to right, #222222 , #333333);
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.logo {
+  float: left ;
+  padding: 10px 0;
+}
+
+nav {
+  float: right !important;
+}
+
+nav ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+nav li {
+  display: inline-block !important;
+  margin-left: 70px !important;
+  padding-top: 23px !important;
+
+  position: relative !important;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  font-size: 14px !important;
+}
+
+nav a:hover {
+  color: #444 !important;
+}
+
+nav a::before {
+  content: '' !important;
+  display: block !important;
+  height: 5px !important;
+  background: linear-gradient(to right, #29abe2 , #7db9e8) !important;
+
+  position: absolute !important;
+  top: 0 !important;
+  width: 0% !important;
+
+  transition: all ease-in-out 250ms !important;
+}
+
+nav a:hover::before {
+  width: 100% !important;
+}
+
+img.logo1 {
+  height: 300px;
+  position: absolute;
+  margin: auto;
+  display: block;
+  top: 80px;
+  left: 0;
+  right: 0;
+  z-index:1;
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+        .btn:focus, .btn:active {
+            outline: none !important;
+            box-shadow: none;
+        }
+
+        .btn:active {
+            background: linear-gradient(to right, #29abe2 , #7db9e8) !important;
+            outline: none;
+            box-shadow: none !important;
+        }
+           .custom-control-input:focus ~ .custom-control-label::before {
+            box-shadow: none !important;
+        }
+  </style>
   <body>
-	Basic Operations <br/>
-    <a href="/add">(add)</a>
-	<a href="/subtract">(subtract)</a>
-	<a href="/multiply">(multply)</a>
-	<a href="/divide">(divide)</a>
-	<a href="/exponent">(exponent)</a><br/>
-	Unsorted Things <br/>
-	<a href="/multiplythree">(m3)</a>
-	<a href="/special">(specialrighttriangles)</a>
-	<a href="/linearequation">(linearequation)</a>
-	<a href="/exponentssub">(subtract exponents)</a>
-	<a href="/exponentsadd">(add exponents)</a>
-	<a href="/addfractions">(fractions)</a>
-	<a href="/pythago">(pythag)</a>
-	<a href="/syseq">(syseq)</a>
-	<a href="/onevariable">(one variable)</a><br/>
-	email: {{e}}
-	{% if e == "not logged in" %}
-	<a href="/login">(login)</a>
-	<a href="/signup">(signup)</a>
-	{% else %}
-	<a href="/logout">(logout)</a>
-	<a href="/coins">(coins)</a>
-	{% endif %}
-  </body>
+<header>
+    <div class="container">
+      <img class='logo' src ='/static/reclogo.svg' height='70'>
 
+      <nav>
+        <ul>
+          <li><a href="/homepage">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/">Problems</a></li>
+          <li><a href="/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+    <p> </p>
+    <form>
+    <br>
+    <div class="form-row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="data:image/jpeg;base64,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" class="mr-3" alt=""  width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Add</h5>
+                <a href="/add" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="https://www.theschoolrun.com/sites/theschoolrun.com/files/article_images/subtraction.png" class="mr-3" alt="..." width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Subtract</h5>
+            <a href="/subtract" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-12">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="https://www.theschoolrun.com/sites/theschoolrun.com/files/article_images/multiplication.png" class="mr-3" alt="..."  width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Multiply</h5>
+                <a href="/multiply" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="http://images.clipartpanda.com/division-clipart-math-division-symbol.png" class="mr-3" alt="..." width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Divide</h5>
+                <a href="/divide" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-12">
+        </div>
+        </div>
+    <div class="form-row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="https://www.mathsisfun.com/algebra/images/exponent-8-2.svg" class="mr-3" alt="..."  width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Exponents</h5>
+                <a href="/exponent" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="https://www.theschoolrun.com/sites/theschoolrun.com/files/article_images/multiplication.png" class="mr-3" alt="..." width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Multiply Three</h5>
+                <a href="/m3" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-12">
+        </div>
+        </div>
+    <div class="form-row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="https://www.dummies.com/wp-content/uploads/258409.image1.jpg" class="mr-3" alt="..."  width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Special Right Triangles</h5>
+                <a href="/special" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="https://cdn.kastatic.org/ka-perseus-graphie/ac5fb3c767392ab012eb7eb1eb5abb029bfdf639.svg" class="mr-3" alt="..." width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Linear Equations</h5>
+                <a href="/linearequation" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-12">
+        </div>
+        </div>
+            <div class="form-row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS3ooLEVhDxbxzdklPix8vWUo7kLMWqfsgyX4azjpEFjzs1VSwjA" class="mr-3" alt="..."  width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Subtract Exponents</h5>
+                <a href="/exponentssub" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="https://pbs.twimg.com/profile_images/473236463866232832/M6W-Tmbh.png" class="mr-3" alt="..." width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Add Exponents</h5>
+                <a href="/exponentsadd" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-12">
+        </div>
+        </div>
+    <div class="form-row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="http://clipart-library.com/img/1823546.png" class="mr-3" alt="..."  width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Fractions</h5>
+                <a href="/addfractions" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="http://www.montereyinstitute.org/courses/DevelopmentalMath/COURSE_TEXT2_RESOURCE/U07_L1_T4_text_final_2_files/image001.gif" class="mr-3" alt="..." width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Pythagorean Theorem</h5>
+                <a href="pythago" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-12">
+        </div>
+        </div>
+            <div class="form-row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="https://www.mathwarehouse.com/algebra/linear_equation/systems-of-equation/images/solutions-systems-linear-equations/solution-answer3.gif" class="mr-3" alt="..."  width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">Systems of Equations</h5>
+                <a href="/syseq" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm">
+        <div class="media">
+            <img src="https://www.teagueisd.org/cms/lib6/TX01918355/Centricity/Domain/215/one%20variable%20equation.png" class="mr-3" alt="..." width="150" height="150">
+            <div class="media-body">
+            <h5 class="mt-0">One-Variable Equations</h5>
+                <a href="onevariable" class="btn btn-primary">Practice</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-12">
+        </div>
+        </div>
+        <br>
+    </form>
+  </body>
 </html>
