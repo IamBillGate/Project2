@@ -153,7 +153,7 @@ def signup():
 
         if p!=confirm: return render_template('signup.html',email=e,display='Passwords do not match',session=session)
         
-        sql = 'INSERT INTO User (email, password) values(\'{}\',\'{}\')'.format(e,p)
+        sql = 'INSERT INTO User (email, password, coins) values(\'{}\',\'{}\',0)'.format(e,p)
         c.execute(sql)
         conn.commit()
         sql = "SELECT seq FROM sqlite_sequence WHERE name = 'user'"
